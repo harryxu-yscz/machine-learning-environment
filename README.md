@@ -36,7 +36,7 @@ This is the Git repo of the Docker official image for a fully automated machine 
 * Base image:
 	[NVIDIA's Ubuntu 16.04 CUDA 8.0 cuDNN 6 devel](https://gitlab.com/nvidia/cuda/blob/ubuntu16.04/8.0/devel/cudnn6/Dockerfile)
 
-* Docker Hub URL : [Docker Hub](https://hub.docker.com/r/pldelisle/ml_env/)
+* Docker Hub URL : [Docker Hub](https://hub.docker.com/r/pldelisle/machine-learning-environment/)
 
 
 ### Included softwares in Docker container 
