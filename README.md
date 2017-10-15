@@ -3,20 +3,20 @@
 # Machine Learning Docker Environment 
 <img src="chip.png" width="96" height="96" vertical-align="bottom">
 
-## Introduction
+### Introduction
 
 This is the Git repo of the Docker official image for a fully automated machine learning Docker environment. This environment has been primarily built for the [GTI770 Machine Learning class](https://en.etsmtl.ca/Programmes-Etudes/1er-cycle/Fiche-de-cours?Sigle=GTI770) at [Ecole de technologie superieure](https://en.etsmtl.ca/), but can be use for any other work related to machine learning and image processing. Two versions are available : 
 
 * One with all libraries compiled and built for using NVIDIA GPUs
 * One with all libraries compuled and built to only use a x86-64 CPU
 
-## Supported tags and respective `Dockerfile` links 
+### Supported tags and respective `Dockerfile` links 
 
 `[latest-gpu]` *[Dockerfile](https://github.com/pldelisle/machine-learning-docker-environment/blob/master/dockerfile.gpu)*
 
 `[latest-cpu]` *[Dockerfile](https://github.com/pldelisle/machine-learning-docker-environment/blob/master/dockerfile.cpu)*
 
-## Quick references
+### Quick references
 
 * Maintained by: 
 
@@ -39,9 +39,9 @@ This is the Git repo of the Docker official image for a fully automated machine 
 * Docker Hub URL : [Docker Hub](https://hub.docker.com/r/pldelisle/ml_env/)
 
 
-# Included softwares in Docker container 
+### Included softwares in Docker container 
 
-## Machine learning frameworks
+#### Machine learning frameworks
 
 * [TensorFlow 1.3](http://tensorflow.org) with [Tensorboard](https://www.tensorflow.org/get_started/summaries_and_tensorboard)
 * [Caffe 1.0](http://caffe.berkeleyvision.org) 
@@ -49,18 +49,18 @@ This is the Git repo of the Docker official image for a fully automated machine 
 * [scikit-learn](http://scikit-learn.org/stable/)
 * [pytorch](https://github.com/pytorch/pytorch)
 
-## Image processing  
+#### Image processing  
 
 * [OpenCV 3.3.0](https://github.com/opencv/opencv)
 * [scikit-image](http://scikit-image.org)
 * [Pillow](https://python-pillow.org)
 
-## Included Tensorflow wrappers 
+#### Included Tensorflow wrappers 
 
 * [tflearn](https://github.com/tflearn/tflearn)
 * [keras](https://keras.io)
 
-## Other utility libraries
+#### Other utility libraries
 
  * [graphviz](http://www.graphviz.org)
  * [matplotlib](http://matplotlib.org)
@@ -69,18 +69,18 @@ This is the Git repo of the Docker official image for a fully automated machine 
  * [sphinx](http://www.sphinx-doc.org/en/stable/)
  * [pytest](https://docs.pytest.org/en/latest/)
 
-# Minimum requirements
+### Minimum requirements
 
-## For dockerfile.gpu
+### For dockerfile.gpu
 
 * NVIDIA GeForce 700 or above GPU
 * 10 GB free hard disk space
 
-## For dockerfile.cpu
+### For dockerfile.cpu
 
 * 5 GB free hard disk space
 
-## Notes
+### Notes
 
 OpenCV, Tensorflow, Theano and Caffe are built with NVIDIA GPU support for hardware acceleration. 
 
@@ -89,9 +89,9 @@ OpenCV has been compiled for Python3. The `ml_venv` python virtual environment c
 Port `6006` is exposed for Tensorboard log file parsing. 
 
 
-# Usage
+### Usage
 
-## Getting started
+#### Getting started
 
 `docker pull pldelisle/ml_env`
 
@@ -99,42 +99,41 @@ Port `6006` is exposed for Tensorboard log file parsing.
 
 `nvidia-docker start gti770_ml`
 
-## To get root access to the container 
+#### To get root access to the container 
 
 `nvidia-docker exec -u root -it gti770_ml /bin/bash`
 
-## To access to pre-built virtualenv with installed libraries
+#### To access to pre-built virtualenv with installed libraries
 
 `source /home/ubuntu/ml_venv/bin/activate`
 `(ml_venv)$`
 
-# How to contribute ?
+### How to contribute ?
 - [X] Create a branch by feature and/or bug fix
 - [X] Get the code
 - [X] Commit and push
 - [X] Create a pull request
 
-## Branch naming
+#### Branch naming
 
-### Feature branch
+##### Feature branch
 > feature/ [Short feature description] [Issue number]
 
-### Bug branch
+##### Bug branch
 > fix/ [Short fix description] [Issue number]
 
-### Commits syntax:
+##### Commits syntax:
 
-### Adding code:
+##### Adding code:
 > \+ Added [Short Description] [Issue Number]
 
-### Deleting code:
+##### Deleting code:
 > \- Deleted [Short Description] [Issue Number]
 
-### Modifying code:
+##### Modifying code:
 > \* Changed [Short Description] [Issue Number]
 
-
-# Credits
+### Credits
 
 <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http
 ://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
