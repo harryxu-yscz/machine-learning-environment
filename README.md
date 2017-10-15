@@ -1,7 +1,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/pldelisle/machine-learning-docker-environment/.svg "GitHub issues")](https://github.com/pldelisle/machine-learning-docker-environment/issues) [![GitHub stars](https://img.shields.io/github/stars/pldelisle/machine-learning-docker-environment.svg "GitHub stars")](https://github.com/pldelisle/machine-learning-docker-environment/) [![Build Status](https://travis-ci.org/pldelisle/machine-learning-docker-environment.svg?branch=master)](https://travis-ci.org/pldelisle/machine-learning-docker-environment)
 
 # Machine Learning Docker Environment 
-<img src="chip.png" width="96" height="96" vertical-align="bottom">
+<img src="images/chip.png" width="96" height="96" vertical-align="bottom">
 
 ### Introduction
 
@@ -91,22 +91,30 @@ Port `6006` is exposed for Tensorboard log file parsing.
 
 ### Usage
 
-#### Getting started
+#### Getting started (GPU version)
 
-`docker pull pldelisle/ml_env`
+`$ docker pull pldelisle/ml_env`
 
-`nvidia-docker create pldelisle/ml_env --name < container name > --volume /home/< your username > /path/to/shared/files`
+`$ nvidia-docker create --name gti770_env --volume /home/<your username>/path/to/shared/files pldelisle/ml_env:latest-gpu`
 
-`nvidia-docker start gti770_ml`
+`$ nvidia-docker start gti770_env`
+
+#### Getting started (CPU version)
+
+`$ docker pull pldelisle/ml_env`
+
+`$ docker create --name gti770_env --volume /home/<your username>/path/to/shared/files pldelisle/ml_env:latest-cpu`
+
+`$ docker start gti770_env`
 
 #### To get root access to the container 
 
-`nvidia-docker exec -u root -it gti770_ml /bin/bash`
+`$ nvidia-docker exec -u root -it gti770_env /bin/bash`
 
 #### To access to pre-built virtualenv with installed libraries
 
-`source /home/ubuntu/ml_venv/bin/activate`
-`(ml_venv)$`
+`$ source /home/ubuntu/ml_venv/bin/activate`
+`(ml_venv)$ `
 
 ### How to contribute ?
 - [X] Create a branch by feature and/or bug fix
