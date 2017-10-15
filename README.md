@@ -93,17 +93,17 @@ Port `6006` is exposed for Tensorboard log file parsing.
 
 #### Getting started (GPU version)
 
-`$ docker pull pldelisle/ml_env`
+`$ docker pull pldelisle/machine-learning-environment`
 
-`$ nvidia-docker create --name gti770_env --volume /home/<your username>/path/to/shared/files pldelisle/ml_env:latest-gpu`
+`$ nvidia-docker create --name gti770_env --volume /home/<your username>/path/to/shared/files pldelisle/machine-learning-environment:latest-gpu`
 
 `$ nvidia-docker start gti770_env`
 
 #### Getting started (CPU version)
 
-`$ docker pull pldelisle/ml_env`
+`$ docker pull pldelisle/machine-learning-environment`
 
-`$ docker create --name gti770_env --volume /home/<your username>/path/to/shared/files pldelisle/ml_env:latest-cpu`
+`$ docker create --name gti770_env --volume /home/<your username>/path/to/shared/files pldelisle/machine-learning-environment:latest-cpu`
 
 `$ docker start gti770_env`
 
