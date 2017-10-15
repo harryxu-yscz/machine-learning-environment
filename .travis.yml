@@ -1,0 +1,22 @@
+sudo: required
+
+language: bash
+
+services:
+    - docker
+
+install:
+  - git clone https://github.com/pldelisle/machine-learning-docker-environment ~/official-images
+
+
+before_install:
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - sudo apt-get update
+  - sudo apt-get -y install docker-ce
+  - docker pull pldelisle/ml_env
+  - docker build --rm -f dockerfile.gpu --tag pldelisle/ml_env:latest-gpu . 
+  - docker build --rm -f dockerfile.cpu --tag pldelisle/ml_env:latest-cpu . 
+
+after_script:
+  - docker images
