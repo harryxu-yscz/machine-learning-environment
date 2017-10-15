@@ -14,7 +14,8 @@ before_install:
   - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
   - sudo apt-get update
   - sudo apt-get -y install docker-ce
-  - docker pull pldelisle/ml_env
+  - docker pull pldelisle/ml_env:latest-gpu
+   - docker pull pldelisle/ml_env:latest-cpu
   - docker build --rm -f dockerfile.gpu --tag pldelisle/ml_env:latest-gpu . 
   - docker build --rm -f dockerfile.cpu --tag pldelisle/ml_env:latest-cpu . 
 

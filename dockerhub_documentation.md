@@ -1,7 +1,7 @@
 ## Supported tags and respective `Dockerfile` links 
 
-`[latest-gpu]` *[Dockerfile](https://github.com/pldelisle/machine-learning-docker-environment/blob/master/dockerfile.gpu])*
-`[latest-cpu]` *[Dockerfile](https://github.com/pldelisle/machine-learning-docker-environment/blob/master/dockerfile.cpu])*
+`[latest-gpu]` *[Dockerfile](https://github.com/pldelisle/machine-learning-docker-environment/blob/master/dockerfile.gpu)*
+`[latest-cpu]` *[Dockerfile](https://github.com/pldelisle/machine-learning-docker-environment/blob/master/dockerfile.cpu)*
 
 ## Quick references
 
