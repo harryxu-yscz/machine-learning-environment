@@ -1,14 +1,14 @@
-[![GitHub issues](https://img.shields.io/github/issues/pldelisle/machine-learning-docker-environment.svg)](https://github.com/pldelisle/machine-learning-docker-environment/issues) [![GitHub stars](https://img.shields.io/github/stars/pldelisle/machine-learning-docker-environment.svg)](https://github.com/pldelisle/machine-learning-docker-environment/) [![Build Status](https://travis-ci.org/pldelisle/machine-learning-docker-environment.svg?branch=master)](https://travis-ci.org/pldelisle/machine-learning-docker-environment) [![GitHub forks](https://img.shields.io/github/forks/pldelisle/machine-learning-docker-environment.svg)](https://github.com/pldelisle//machine-learning-docker-environment/network) ![GitHub license](https://img.shields.io/badge/license-MIT-yellow.svg) [![Pulls on Docker Hub](https://img.shields.io/docker/pulls/pldelisle/machine-learning-docker-environment.svg)](https://hub.docker.com/r/pldelisle/machine-learning-environment/) [![Docker Stars](https://img.shields.io/docker/stars/pldelisle/machine-learning-environment.svg)](https://hub.docker.com/r/pldelisle/machine-learning-environment/)
+[![GitHub issues](https://img.shields.io/github/issues/pldelisle/machine-learning-docker-environment.svg)](https://github.com/pldelisle/machine-learning-docker-environment/issues) [![GitHub stars](https://img.shields.io/github/stars/pldelisle/machine-learning-docker-environment.svg)](https://github.com/pldelisle/machine-learning-docker-environment/) [![GitHub forks](https://img.shields.io/github/forks/pldelisle/machine-learning-docker-environment.svg)](https://github.com/pldelisle//machine-learning-docker-environment/network) ![GitHub license](https://img.shields.io/badge/license-MIT-yellow.svg) [![Pulls on Docker Hub](https://img.shields.io/docker/pulls/pldelisle/machine-learning-docker-environment.svg)](https://hub.docker.com/r/pldelisle/machine-learning-environment/) [![Docker Stars](https://img.shields.io/docker/stars/pldelisle/machine-learning-environment.svg)](https://hub.docker.com/r/pldelisle/machine-learning-environment/)
 
 # Machine Learning Docker Environment 
 <img src="images/chip.png" width="96" height="96" vertical-align="bottom">
 
 ### Introduction
 
-This is the Git repo of the Docker official image for a fully automated machine learning Docker environment. This environment has been primarily built for the [GTI770 Machine Learning class](https://en.etsmtl.ca/Programmes-Etudes/1er-cycle/Fiche-de-cours?Sigle=GTI770) at [Ecole de technologie superieure](https://en.etsmtl.ca/), but can be use for any other work related to machine learning and image processing. Two versions are available : 
+This is the Git repo of the Docker official image for a fully automated machine learning Docker environment. This environment has been primarily built for the [GTI770 Machine Learning class](https://en.etsmtl.ca/Programmes-Etudes/1er-cycle/Fiche-de-cours?Sigle=GTI770) at [Ecole de technologie superieure](https://en.etsmtl.ca/), but can be used for any other work related to machine learning and image processing. Two versions are available : 
 
 * One with all libraries compiled and built for using NVIDIA GPUs
-* One with all libraries compuled and built to only use a x86-64 CPU
+* One with all libraries compiled and built to only use a x86-64 CPU
 
 ### Supported tags and respective `Dockerfile` links 
 
@@ -39,7 +39,7 @@ This is the Git repo of the Docker official image for a fully automated machine 
 * Docker Hub URL : [Docker Hub](https://hub.docker.com/r/pldelisle/machine-learning-environment/)
 
 
-### Included softwares in Docker container 
+### Included software in Docker container 
 
 #### Machine learning frameworks
 
@@ -84,7 +84,7 @@ This is the Git repo of the Docker official image for a fully automated machine 
 
 OpenCV, Tensorflow, Theano and Caffe are built with NVIDIA GPU support for hardware acceleration. 
 
-OpenCV has been compiled for Python3. The `ml_venv` python virtual environment contains a ready to use OpenCV Python3 binding library.
+OpenCV has been compiled for Python3. The `ml_venv` python virtual environment contains ready to use OpenCV Python3 binding library.
 
 Port `6006` is exposed for Tensorboard log file parsing. 
 
@@ -111,7 +111,7 @@ Port `6006` is exposed for Tensorboard log file parsing.
 
 `$ nvidia-docker exec -u root -it gti770_env /bin/bash`
 
-#### To access to pre-built virtualenv with installed libraries
+#### To access to prebuilt virtualenv with installed libraries
 
 `$ source /home/ubuntu/ml_venv/bin/activate`
 `(ml_venv)$ `
