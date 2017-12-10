@@ -12,9 +12,9 @@ This is the Git repo of the Docker official image for a fully automated machine 
 
 ### Supported tags and respective `Dockerfile` links 
 
-`[latest-gpu]` *[Dockerfile](https://github.com/pldelisle/machine-learning-docker-environment/blob/master/dockerfile.gpu)*
+`[latest-gpu]` *[Dockerfile](https://github.com/pldelisle/machine-learning-environment/blob/master/gpu/Dockerfile)*
 
-`[latest-cpu]` *[Dockerfile](https://github.com/pldelisle/machine-learning-docker-environment/blob/master/dockerfile.cpu)*
+`[latest-cpu]` *[Dockerfile](https://github.com/pldelisle/machine-learning-environment/blob/master/cpu/Dockerfile)*
 
 ### Quick references
 
