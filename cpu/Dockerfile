@@ -9,92 +9,105 @@ ARG CLONE_TAG=1.0
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
 ENV PATH $CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
+ENV OPENCV_VERSION=3.3.1
 
 LABEL maintainer "Pierre-Luc Delisle <pierre-luc.delisle.1@ens.etsmtl.ca>"
 
 RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-            ca-certificates \
+                        apt-utils \ 
             build-essential \
-            apt-utils \ 
+            ca-certificates \
             cmake \
+	    curl \
+            doxygen \
+            freeglut3* \
+            g++ \
+            gfortran \
             git \
-            libgtk2.0-dev \ 
-            pkg-config \
+            graphviz \
+            libatlas-base-dev \
+            libatlas-base-dev \ 
             libavcodec-dev \
             libavformat-dev \
-            libswscale-dev \
-            wget \
-            libhdf5-dev \
-            g++ \
-            graphviz \
-            vim \
-            nano \
-            unzip \
-            libtbb2 \
-            libtbb-dev \
-            libjpeg-dev \
-            libpng-dev \
-            libtiff-dev \
-            libjasper-dev \
-            libdc1394-22-dev \ 
-            libv4l-dev \
-            libgtk-3-dev \
-            libatlas-base-dev \ 
-            gfortran \
-            openblas-* \
-            libeigen3-dev \  
-            ocl-icd-opencl-dev \ 
-            python3-dev \
-            python3-tk \
-            python3-numpy \
-            python3-scipy \
-            python3-nose \
-            python3-h5py \
-            python3-skimage \
-            python3-matplotlib \
-            python3-pandas \
-            python3-sklearn \
-            python3-sympy \
-            libcupti-dev \
-            libgtkglext1* \
-            freeglut3* \
-            libgl1-mesa-dev \
-            mesa-common-dev \
-            libprotobuf-dev \
-            libleveldb-dev \
-            libsnappy-dev \
-            libopencv-dev \ 
-            libhdf5-serial-dev \
-            protobuf-compiler \
             libboost-* \
-            libatlas-base-dev \
-            libopenblas-dev \ 
-            openblas* \
-            libgstreamer* \
+            libcupti-dev \
+	    libcurl3-dev \
+            libdc1394-22-dev \ 
+            libeigen3-dev \  
             libfaac-dev \
+	    libfreetype6-dev \
+            libgflags-dev \
+            libgl1-mesa-dev \
+            libgoogle-glog-dev \
+            libgphoto2* \
+            libgstreamer* \
+            libgtk-3-dev \
+            libgtk2.0-dev \ 
+            libgtkglext1* \
+            libhdf5-dev \
+            libhdf5-serial-dev \
+            libjasper-dev \
+            libjpeg-dev \
+            liblapacke-dev \
+            libleveldb-dev \
+            liblmdb-dev \
+            libopenblas-dev \ 
             libopencore-amrnb-dev \ 
             libopencore-amrwb-dev \ 
-            libtheora-dev \
-            libvorbis-dev \
-            libxvidcore-dev \
-            x264 \
-            v4l-utils \
-            liblapacke-dev \
-            doxygen \
+            libopencv-dev \ 
             libopenni2* \
-            libgphoto2* \
-            libgflags-dev \
-            libgoogle-glog-dev \
+            libpng-dev \
+            libprotobuf-dev \
+            libsnappy-dev \
+            libswscale-dev \
+            libtbb-dev \
+            libtbb2 \
+            libtheora-dev \
+            libtiff-dev \
+            libv4l-dev \
+            libvorbis-dev \
+	    libzmq3-dev \
+            libxvidcore-dev \
+            mesa-common-dev \
+            nano \
+            ocl-icd-opencl-dev \ 
+            openblas-* \
+            openblas* \
+            pkg-config \
+            protobuf-compiler \
             python-dev \
             python-numpy \
             python-pip \
-            python-setuptools \
             python-scipy \
-            liblmdb-dev && \
+            python-setuptools \
+            python3-dev \
+            python3-h5py \
+            python3-matplotlib \
+            python3-nose \
+            python3-numpy \
+            python3-pandas \
+            python3-scipy \
+            python3-skimage \
+            python3-sklearn \
+            python3-sympy \
+            python3-tk \
+	    software-properties-common \
+            swig \
+            unzip \
+            v4l-utils \
+            vim \
+            wget \
+            x264 \ 
+	    zip \
+            zlib1g-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* 
+
+RUN echo "deb [arch=amd64] http://storage.googleapis.com/tensorflow-serving-apt stable tensorflow-model-server tensorflow-model-server-universal" | tee /etc/apt/sources.list.d/tensorflow-serving.list && \
+	curl https://storage.googleapis.com/tensorflow-serving-apt/tensorflow-serving.release.pub.gpg | apt-key add - && \
+	apt-get update && apt-get install tensorflow-model-server
 
 RUN wget https://bootstrap.pypa.io/get-pip.py && \ 
     python3 get-pip.py && \ 
@@ -132,16 +145,16 @@ RUN mkdir -p /src && \
 
 RUN cd /src && \
     mkdir -p $OPENCV_DIR && \
-    wget https://github.com/opencv/opencv/archive/3.3.0.zip && \
-    unzip 3.3.0.zip && \ 
-    mv /src/opencv-3.3.0/ $OPENCV_DIR/ && \ 
-    rm -rf /src/3.3.0.zip && \
-    wget https://github.com/opencv/opencv_contrib/archive/3.3.0.zip -O 3.3.0-contrib.zip && \
-    unzip 3.3.0-contrib.zip && \
-    mv /src/opencv_contrib-3.3.0 $OPENCV_DIR/ && \ 
-    rm -rf /src/3.3.0-contrib.zip && \ 
-    mkdir -p $OPENCV_DIR/opencv-3.3.0/build && \
-    cd $OPENCV_DIR/opencv-3.3.0/build && \ 
+    wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip && \
+    unzip 3.3.1.zip && \ 
+    mv /src/opencv-$OPENCV_VERSION/ $OPENCV_DIR/ && \ 
+    rm -rf /src/$OPENCV_VERSION.zip && \
+    wget https://github.com/opencv/opencv_contrib/archive/$OPENCV_VERSION.zip -O $OPENCV_VERSION-contrib.zip && \
+    unzip $OPENCV_VERSION-contrib.zip && \
+    mv /src/opencv_contrib-$OPENCV_VERSION $OPENCV_DIR/ && \ 
+    rm -rf /src/$OPENCV_VERSION-contrib.zip && \ 
+    mkdir -p $OPENCV_DIR/opencv-$OPENCV_VERSION/build && \
+    cd $OPENCV_DIR/opencv-$OPENCV_VERSION/build && \ 
     cmake \
     -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_PYTHON_SUPPORT=ON \
@@ -155,7 +168,7 @@ RUN cd /src && \
     -D PYTHON_INCLUDE_DIR2=/usr/include/x86_64-linux-gnu/python3.5m \
     -D PYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.5m.so \
     -D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.5/dist-packages/numpy/core/include/ \
-    -D OPENCV_EXTRA_MODULES_PATH=$OPENCV_DIR/opencv_contrib-3.3.0/modules \
+    -D OPENCV_EXTRA_MODULES_PATH=$OPENCV_DIR/opencv_contrib-$OPENCV_VERSION/modules \
     -D WITH_TBB=ON \
     -D WITH_PTHREADS_PF=ON \
     -D WITH_OPENNI=OFF \
@@ -212,7 +225,7 @@ RUN cd /home/ubuntu && \
                  scikit-image \
                  scipy \
                  tensorflow \
-                 tensorflow-tensorboard==0.1.8 \
+                 tensorflow-tensorboard \
                  tflearn \
                  keras \
                  jupyter \
@@ -220,6 +233,10 @@ RUN cd /home/ubuntu && \
                  wheel \
                  boost \
                  pytest \
+		 librosa \
+		 grpcio \
+		 flask \
+		 flask-restplus \
                  http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp35-cp35m-manylinux1_x86_64.whl && \
     pip3 install torchvision
 
