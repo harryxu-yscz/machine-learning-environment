@@ -43,7 +43,7 @@ This is the Git repo of the Docker official image for a fully automated machine 
 
 #### Machine learning frameworks
 
-* [TensorFlow 1.3](http://tensorflow.org) with [Tensorboard](https://www.tensorflow.org/get_started/summaries_and_tensorboard)
+* [TensorFlow 1.4](http://tensorflow.org) with [Tensorboard](https://www.tensorflow.org/get_started/summaries_and_tensorboard)
 * [Caffe 1.0](http://caffe.berkeleyvision.org) 
 * [Theano](https://github.com/Theano/Theano)
 * [scikit-learn](http://scikit-learn.org/stable/)
@@ -51,7 +51,7 @@ This is the Git repo of the Docker official image for a fully automated machine 
 
 #### Image processing  
 
-* [OpenCV 3.3.0](https://github.com/opencv/opencv)
+* [OpenCV 3.3.1](https://github.com/opencv/opencv)
 * [scikit-image](http://scikit-image.org)
 * [Pillow](https://python-pillow.org)
 
