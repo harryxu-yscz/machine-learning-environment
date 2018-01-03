@@ -214,6 +214,7 @@ RUN cd /home/ubuntu && \
     ln -s /usr/local/lib/python3.5/dist-packages/cv2.cpython-35m-x86_64-linux-gnu.so /home/ubuntu/ml_venv/lib/python3.5/site-packages/ && \
     pip3 install --upgrade --force-reinstall numpy \
                  protobuf \
+		 pandas \
                  Pillow \
                  future \
                  graphviz \
