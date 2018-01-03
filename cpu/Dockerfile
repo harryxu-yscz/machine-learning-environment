@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             build-essential \
             ca-certificates \
             cmake \
-	        curl \
+	    curl \
             doxygen \
             freeglut3* \
             g++ \
@@ -33,11 +33,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             libavformat-dev \
             libboost-* \
             libcupti-dev \
-	        libcurl3-dev \
+	    libcurl3-dev \
             libdc1394-22-dev \ 
             libeigen3-dev \  
             libfaac-dev \
-	        libfreetype6-dev \
+	    libfreetype6-dev \
             libgflags-dev \
             libgl1-mesa-dev \
             libgoogle-glog-dev \
@@ -68,7 +68,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             libtiff-dev \
             libv4l-dev \
             libvorbis-dev \
-	        libzmq3-dev \
+	    libzmq3-dev \
             libxvidcore-dev \
             mesa-common-dev \
             nano \
@@ -93,7 +93,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             python3-sklearn \
             python3-sympy \
             python3-tk \
-	        software-properties-common \
+	    software-properties-common \
             swig \
             unzip \
             v4l-utils \
