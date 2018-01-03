@@ -142,8 +142,8 @@ RUN mkdir -p /src && \
     cd .. && \
     mkdir build && cd build && \
     cmake \
-        -D USE_CUDNN=0 \
-        -D USE_NCCL=0 \
+        -D USE_CUDNN=$CUDA_ENABLED \
+        -D USE_NCCL=$CUDA_ENABLED \
         -D BLAS=open \
         -D USE_OPENCV=ON .. && \
     make -j"$(nproc)" all && \
