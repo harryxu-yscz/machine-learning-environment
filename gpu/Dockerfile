@@ -132,27 +132,6 @@ RUN wget https://bootstrap.pypa.io/get-pip.py && \
                 boost \
                 pytest
 
-RUN mkdir -p /src && \
-    mkdir -p $CAFFE_ROOT && \
-    cd $CAFFE_ROOT && \
-    git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git . && \
-    pip install --upgrade pip && \
-    cd python && \
-    for req in $(cat requirements.txt) pydot; do pip install $req; done && \
-    cd .. && \
-    mkdir build && cd build && \
-    cmake \
-        -D USE_CUDNN=$CUDA_ENABLED \
-        -D USE_NCCL=$CUDA_ENABLED \
-        -D BLAS=open \
-        -D USE_OPENCV=ON .. && \
-    make -j"$(nproc)" all && \
-    make pycaffe && \
-    make test && \ 
-    make install && \
-    echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig && \
-    rm -rf $CAFFE_ROOT
-
 RUN cd /src && \
     mkdir -p $OPENCV_DIR && \
     wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip && \
@@ -218,6 +197,27 @@ RUN cd /src && \
     ldconfig && \
     rm -rf $OPENCV_DIR
 
+RUN mkdir -p /src && \
+    mkdir -p $CAFFE_ROOT && \
+    cd $CAFFE_ROOT && \
+    git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git . && \
+    pip install --upgrade pip && \
+    cd python && \
+    for req in $(cat requirements.txt) pydot; do pip install $req; done && \
+    cd .. && \
+    mkdir build && cd build && \
+    cmake \
+        -D USE_CUDNN=$CUDA_ENABLED \
+        -D USE_NCCL=$CUDA_ENABLED \
+        -D BLAS=open \
+        -D USE_OPENCV=ON \
+        -D OPENCV_VERSION=3 .. && \
+    make -j"$(nproc)" all && \
+    make pycaffe && \
+    make test && \ 
+    make install && \
+    echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig && \
+    rm -rf $CAFFE_ROOT
 RUN cd /home/ubuntu && \
     pip3 install virtualenv && \
     virtualenv -p python3 ml_venv && \
