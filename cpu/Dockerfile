@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             build-essential \
             ca-certificates \
             cmake \
-	    curl \
+	        curl \
             doxygen \
             freeglut3* \
             g++ \
@@ -33,11 +33,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             libavformat-dev \
             libboost-* \
             libcupti-dev \
-	    libcurl3-dev \
+	        libcurl3-dev \
             libdc1394-22-dev \ 
             libeigen3-dev \  
             libfaac-dev \
-	    libfreetype6-dev \
+	        libfreetype6-dev \
             libgflags-dev \
             libgl1-mesa-dev \
             libgoogle-glog-dev \
@@ -68,7 +68,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             libtiff-dev \
             libv4l-dev \
             libvorbis-dev \
-	    libzmq3-dev \
+	        libzmq3-dev \
             libxvidcore-dev \
             mesa-common-dev \
             nano \
@@ -93,7 +93,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             python3-sklearn \
             python3-sympy \
             python3-tk \
-	    software-properties-common \
+	        software-properties-common \
             swig \
             unzip \
             v4l-utils \
@@ -121,27 +121,6 @@ RUN wget https://bootstrap.pypa.io/get-pip.py && \
                 virtualenvwrapper \
                 boost \
                 pytest
-
-RUN mkdir -p /src && \
-    mkdir -p $CAFFE_ROOT && \
-    cd $CAFFE_ROOT && \
-    git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git . && \
-    pip install --upgrade pip && \
-    cd python && \
-    for req in $(cat requirements.txt) pydot; do pip install $req; done && \
-    cd .. && \
-    mkdir build && cd build && \
-    cmake \
-        -D USE_CUDNN=0 \
-        -D USE_NCCL=0 \
-        -D BLAS=open \
-        -D USE_OPENCV=ON .. && \
-    make -j"$(nproc)" all && \
-    make pycaffe && \
-    make test && \ 
-    make install && \
-    echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig && \
-    rm -rf $CAFFE_ROOT
 
 RUN cd /src && \
     mkdir -p $OPENCV_DIR && \
@@ -206,6 +185,31 @@ RUN cd /src && \
     make install && \
     ldconfig && \
     rm -rf $OPENCV_DIR
+
+RUN mkdir -p /src && \
+    mkdir -p $CAFFE_ROOT && \
+    cd $CAFFE_ROOT && \
+    git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git . && \
+    pip install --upgrade pip && \
+    cd python && \
+    for req in $(cat requirements.txt) pydot; do pip install $req; done && \
+    cd .. && \
+    mkdir build && cd build && \
+    cmake \
+        -D USE_CUDNN=$CUDA_ENABLED \
+        -D USE_NCCL=$CUDA_ENABLED \
+        -D BLAS=open \
+        -D PYTHON_INCLUDE=/usr/bin/python3 \ 
+        /usr/lib/python3.5/dist-packages/numpy/core/include \
+        -D USE_OPENCV=ON \
+        -D OPENCV_VERSION=3 \
+        -D WITH_PYTHON_LAYER=ON .. && \
+    make -j"$(nproc)" all && \
+    make pycaffe && \
+    make test && \ 
+    make install && \
+    echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig && \
+    rm -rf $CAFFE_ROOT
 
 RUN cd /home/ubuntu && \
     pip3 install virtualenv && \
