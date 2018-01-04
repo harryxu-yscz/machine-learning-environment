@@ -210,8 +210,11 @@ RUN mkdir -p /src && \
         -D USE_CUDNN=$CUDA_ENABLED \
         -D USE_NCCL=$CUDA_ENABLED \
         -D BLAS=open \
+        -D PYTHON_INCLUDE=/usr/bin/python3 \ 
+        /usr/lib/python3.5/dist-packages/numpy/core/include \
         -D USE_OPENCV=ON \
-        -D OPENCV_VERSION=3 .. && \
+        -D OPENCV_VERSION=3 \
+        -D WITH_PYTHON_LAYER=ON .. && \
     make -j"$(nproc)" all && \
     make pycaffe && \
     make test && \ 
