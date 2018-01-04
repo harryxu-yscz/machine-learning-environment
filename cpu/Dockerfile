@@ -146,7 +146,7 @@ RUN mkdir -p /src && \
 RUN cd /src && \
     mkdir -p $OPENCV_DIR && \
     wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip && \
-    unzip 3.3.1.zip && \ 
+    unzip $OPENCV_VERSION.zip && \ 
     mv /src/opencv-$OPENCV_VERSION/ $OPENCV_DIR/ && \ 
     rm -rf /src/$OPENCV_VERSION.zip && \
     wget https://github.com/opencv/opencv_contrib/archive/$OPENCV_VERSION.zip -O $OPENCV_VERSION-contrib.zip && \
