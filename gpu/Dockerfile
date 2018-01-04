@@ -273,6 +273,8 @@ USER $NB_USER
 
 EXPOSE 6006 
 
+EXPOSE 5000
+
 WORKDIR /
 
 CMD ["/bin/bash"]
