@@ -122,7 +122,8 @@ RUN wget https://bootstrap.pypa.io/get-pip.py && \
                 boost \
                 pytest
 
-RUN cd /src && \
+RUN mkdir -p /src && \
+    cd /src && \
     mkdir -p $OPENCV_DIR && \
     wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip && \
     unzip $OPENCV_VERSION.zip && \ 
@@ -186,7 +187,7 @@ RUN cd /src && \
     ldconfig && \
     rm -rf $OPENCV_DIR
 
-RUN mkdir -p /src && \
+RUN cd /src && \
     mkdir -p $CAFFE_ROOT && \
     cd $CAFFE_ROOT && \
     git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git . && \

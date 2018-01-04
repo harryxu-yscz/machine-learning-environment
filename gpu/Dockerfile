@@ -132,10 +132,11 @@ RUN wget https://bootstrap.pypa.io/get-pip.py && \
                 boost \
                 pytest
 
-RUN cd /src && \
+RUN mkdir -p /src && \
+    cd /src && \
     mkdir -p $OPENCV_DIR && \
     wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip && \
-    unzip 3.3.1.zip && \ 
+    unzip $OPENCV_VERSION.zip && \ 
     mv /src/opencv-$OPENCV_VERSION/ $OPENCV_DIR/ && \ 
     rm -rf /src/$OPENCV_VERSION.zip && \
     wget https://github.com/opencv/opencv_contrib/archive/$OPENCV_VERSION.zip -O $OPENCV_VERSION-contrib.zip && \
@@ -197,7 +198,7 @@ RUN cd /src && \
     ldconfig && \
     rm -rf $OPENCV_DIR
 
-RUN mkdir -p /src && \
+RUN cd /src && \
     mkdir -p $CAFFE_ROOT && \
     cd $CAFFE_ROOT && \
     git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git . && \
@@ -221,6 +222,7 @@ RUN mkdir -p /src && \
     make install && \
     echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig && \
     rm -rf $CAFFE_ROOT
+
 RUN cd /home/ubuntu && \
     pip3 install virtualenv && \
     virtualenv -p python3 ml_venv && \
