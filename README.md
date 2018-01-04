@@ -142,7 +142,7 @@ Port `6006` is exposed for Tensorboard log file parsing.
 > \* Changed [Short Description] [Issue Number]
 
 ##### To build the container : 
-`docker build -t pldelisle/machine-learning-environment:latest-cpu --compress --rm .`
+`docker build -t pldelisle/machine-learning-environment:latest-cpu --compress --rm .`  
 `nvidia-docker build -t pldelisle/machine-learning-environment:latest-gpu --compress --rm .`
 
 ### Credits
